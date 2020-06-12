@@ -1,7 +1,7 @@
 var canvas,
   context,
-  dragging = false,
   drawing = true,
+  dragging = false,
   repeat = false,
   dragStartLocation,
   snapshot,
@@ -41,7 +41,7 @@ function drawCircle(dragStartLocation) {
 }
 
 function drawClosePath() {
-  console.log("Close Path");
+  // console.log("Close Path");
   clearCanvas();
 
   context.moveTo(points[0].x, points[0].y);
@@ -62,7 +62,8 @@ function findDiffPoint(pA, pB) {
 }
 
 function dragStart(event) {
-  console.log(points);
+  /* start drawing polyline */
+  // console.log(points);
   repeatPoint = false;
 
   if (drawing == true) {
@@ -79,7 +80,6 @@ function dragStart(event) {
         console.log("Diff y: ", diffY);
         // current point close to start point, so create close path (with current point)
         dragStop();
-
         drawClosePath();
       }
     }
@@ -115,16 +115,11 @@ function drag(event) {
   }
 }
 
-function dragStop(event) {
+function dragStop() {
   drawing = false;
   dragging = false;
   restoreSnapshot();
   console.log(points);
-  // check if close loop or not
-
-  // if close loop: pass
-
-  // else choose which side is in or out
 }
 
 function init() {
